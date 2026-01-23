@@ -233,7 +233,7 @@ class TracerouteHandler {
             if (match2 != null) {
                 var match2Result = match2.groupValues[1].trim()
                 if (match2Result.isNotEmpty()) {
-                    match2Result = match2Result.substring(0, match2Result.length - 1)
+                    match2Result = match2Result.dropLast(1)
                 }
                 return match2Result
             }
@@ -331,11 +331,8 @@ class TracerouteHandler {
                         val currentLocale = Locale.getDefault()
                         val isChinese = currentLocale.language.startsWith("zh")
                         var jsonData: JsonObject
-                        val customDns = object : Dns {
-                            override fun lookup(hostname: String): List<InetAddress> {
-                                return InetAddress.getAllByName(preferredAPIIp.value).toList()
-                            }
-                        }
+                        val customDns =
+                            Dns { InetAddress.getAllByName(preferredAPIIp.value).toList() }
                         val client = OkHttpClient.Builder()
                             .connectTimeout(5, TimeUnit.SECONDS)
                             .readTimeout(5, TimeUnit.SECONDS)
@@ -635,11 +632,9 @@ class TracerouteHandler {
                                 try {
                                     //get first usable ip and test ws
                                     var isRequestSuccessful = false
-                                    val customDns = object : Dns {
-                                        override fun lookup(hostname: String): List<InetAddress> {
-                                            //return InetAddress.getAllByName("192.168.3.17").toList()
-                                            return InetAddress.getAllByName(i).toList()
-                                        }
+                                    val customDns =
+                                        Dns { //return InetAddress.getAllByName("192.168.3.17").toList()
+                                            InetAddress.getAllByName(i).toList()
                                     }
                                     val client = OkHttpClient.Builder()
                                         .connectTimeout(5, TimeUnit.SECONDS)
@@ -800,11 +795,9 @@ class TracerouteHandler {
                                 }
                                 try {
                                     //get first usable ip and get pow token
-                                    val customDns = object : Dns {
-                                        override fun lookup(hostname: String): List<InetAddress> {
-                                            //return InetAddress.getAllByName("192.168.3.17").toList()
-                                            return InetAddress.getAllByName(i).toList()
-                                        }
+                                    val customDns =
+                                        Dns { //return InetAddress.getAllByName("192.168.3.17").toList()
+                                            InetAddress.getAllByName(i).toList()
                                     }
                                     val client = OkHttpClient.Builder()
                                         .dns(customDns)
@@ -1285,11 +1278,8 @@ class TracerouteHandler {
                         }
                         tempList.sortBy { it[0]["TTL"] as? Int ?: 0 }
                         try {
-                            val customDns = object : Dns {
-                                override fun lookup(hostname: String): List<InetAddress> {
-                                    return InetAddress.getAllByName(preferredAPIIp.value).toList()
-                                }
-                            }
+                            val customDns =
+                                Dns { InetAddress.getAllByName(preferredAPIIp.value).toList() }
                             val client = OkHttpClient.Builder()
                                 .connectTimeout(5, TimeUnit.SECONDS)
                                 .readTimeout(5, TimeUnit.SECONDS)

@@ -1,22 +1,25 @@
 [versions]
-agp = "8.11.1"
-kotlin = "2.2.0"
-ksp    = "2.2.0-2.0.2"
-coreKtx = "1.16.0"
+agp = "9.0.0"
+#Migrated to built-in kotlin. Make sure to change kotlin compose version here after upgrading AGP.
+kotlinCompose = "2.3.0"
+#Notice KSP version here.
+ksp = "2.3.4"
+coreKtx = "1.17.0"
 #junit = "4.13.2"
 #junitVersion = "1.1.5"
-espressoCore = "3.6.1"
-lifecycleRuntimeKtx = "2.9.2"
-activityCompose = "1.10.1"
-composeBom = "2025.07.00"
-dnsjava = "3.6.3"
+espressoCore = "3.7.0"
+lifecycleRuntimeKtx = "2.10.0"
+activityCompose = "1.12.2"
+composeBom = "2026.01.00"
+dnsjava = "3.6.4"
 ipaddress = "5.5.1"
-okhttp = "5.1.0"
-gson = "2.13.1"
+okhttp = "5.3.2"
+gson = "2.13.2"
 slf4j-android= "1.7.36"
-room = "2.7.2"
-lifecycleLivedataKtx = "2.9.2"
+room = "2.8.4"
+lifecycleLivedataKtx = "2.10.0"
 colorPicker = "0.7.0"
+composeMaterialIconsCore = "1.7.8"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -43,10 +46,11 @@ room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 room-ktx     = { module = "androidx.room:room-ktx",     version.ref = "room" }
 room-compiler= { module = "androidx.room:room-compiler", version.ref = "room" }
 androidx-lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycleLivedataKtx" }
+compose-material-icons-core = { group = "androidx.compose.material", name = "material-icons-core", version.ref = "composeMaterialIconsCore" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
-jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+#jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 ksp                 = { id = "com.google.devtools.ksp",      version.ref = "ksp" }
-compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlinCompose" }
 

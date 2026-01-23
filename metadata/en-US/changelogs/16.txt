@@ -1,0 +1,5 @@
+1. Update targetSDK to 36(Android 16)
+2. minSDK increased to 23(Android 6) from 21 (Android 5)
+3. Update AGP to 9.0.0
+4. Update dependencies
+5. Optimized code to meet lastest AGP requirements

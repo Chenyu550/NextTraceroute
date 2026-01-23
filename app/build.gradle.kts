@@ -1,12 +1,29 @@
+import com.android.build.api.dsl.ApplicationExtension
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     alias(libs.plugins.androidApplication)
-    alias(libs.plugins.jetbrainsKotlinAndroid)
+//    alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.ksp)
     alias(libs.plugins.compose.compiler)
 }
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(21))
+    }
+}
 
-android {
+kotlin {
+    compilerOptions {
+        jvmTarget = JvmTarget.JVM_21
+    }
+}
+
+ksp {
+    arg("room.schemaLocation", "$projectDir/schemas")
+}
+
+extensions.configure<ApplicationExtension> {
     signingConfigs {
         create("release") {
             keyAlias = System.getenv("RELEASE_KEYSTORE_ALIAS")
@@ -23,15 +40,15 @@ android {
     }
     namespace = "com.surfaceocean.nexttraceroute"
     //noinspection GradleDependency
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.surfaceocean.nexttraceroute"
-        minSdk = 21
+        minSdk = 23
         //noinspection OldTargetApi
-        targetSdk = 35
-        versionCode = 15
-        versionName = "0.1.5"
+        targetSdk = 36
+        versionCode = 16
+        versionName = "0.1.6"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -53,19 +70,9 @@ android {
             }
         }
     }
-    java {
-        toolchain {
-            languageVersion.set(JavaLanguageVersion.of(21))
-        }
-    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_21
         targetCompatibility = JavaVersion.VERSION_21
-    }
-    kotlin {
-        compilerOptions {
-            jvmTarget = JvmTarget.JVM_21
-        }
     }
     buildFeatures {
         compose = true
@@ -78,15 +85,6 @@ android {
             // Unable to strip the following libraries, packaging them as they are:
             jniLibs.keepDebugSymbols.add("**/libandroidx.graphics.path.so")
         }
-    }
-    sourceSets {
-        val debug by getting
-        debug.kotlin.srcDir("build/generated/ksp/debug/kotlin")
-        val release by getting
-        release.kotlin.srcDir("build/generated/ksp/release/kotlin")
-    }
-    ksp {
-        arg("room.schemaLocation", "$projectDir/schemas")
     }
 //    externalNativeBuild {
 //        cmake {
@@ -107,6 +105,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.compose.material.icons.core)
 //    implementation(libs.androidx.ui)
 //    implementation(libs.androidx.ui.graphics)
 //    implementation(libs.androidx.ui.tooling.preview)
@@ -121,5 +120,5 @@ dependencies {
 //    debugImplementation(libs.androidx.ui.test.manifest)
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
-    ksp         (libs.room.compiler)
+    ksp(libs.room.compiler)
 }

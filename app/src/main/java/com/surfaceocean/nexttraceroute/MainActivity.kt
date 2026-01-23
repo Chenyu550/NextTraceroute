@@ -172,7 +172,7 @@ class MainActivity : ComponentActivity() {
                     val apiDNSNamePOW = remember { mutableStateOf("api.nxtrace.org") }
                     val apiHostName = remember { mutableStateOf("origin-fallback.nxtrace.org") }
                     val apiDNSName = remember { mutableStateOf("api.nxtrace.org") }
-                    var lastBackPress by remember { mutableLongStateOf(0L) }
+                    val lastBackPress = remember { mutableLongStateOf(0L) }
                     val listState = rememberLazyListState()
                     val isScrollToFirstLineTriggered = remember { mutableStateOf(false) }
                     val db = Room.databaseBuilder(
@@ -255,7 +255,7 @@ class MainActivity : ComponentActivity() {
                     }
 
                     BackHandler {
-                        if (System.currentTimeMillis() - lastBackPress < 2000) {
+                        if (System.currentTimeMillis() - lastBackPress.longValue < 2000) {
                             db.close()
                             (context as? Activity)?.finish()
                         } else {
@@ -264,7 +264,7 @@ class MainActivity : ComponentActivity() {
                                 "Press again to exit this program!",
                                 Toast.LENGTH_SHORT
                             ).show()
-                            lastBackPress = System.currentTimeMillis()
+                            lastBackPress.longValue = System.currentTimeMillis()
                         }
                     }
                     Column(
@@ -472,7 +472,8 @@ fun MyTopAppBar(
             scrolledContainerColor = genericTextColor.value,
             navigationIconContentColor = genericTextColor.value,
             titleContentColor = genericTextColor.value,
-            actionIconContentColor = genericTextColor.value
+            actionIconContentColor = genericTextColor.value,
+            subtitleContentColor = genericTextColor.value
         ),
         title = {
             Text(
