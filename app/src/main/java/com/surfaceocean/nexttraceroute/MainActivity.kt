@@ -1,7 +1,7 @@
 /*
 
 NextTraceroute, an Android traceroute app using Nexttrace API
-Copyright (C) 2024-2025 surfaceocean
+Copyright (C) 2024-2026 surfaceocean
 Email: r2qb8uc5@protonmail.com
 GitHub: https://github.com/nxtrace/NextTraceroute
 This program is free software: you can redistribute it and/or modify
@@ -420,7 +420,7 @@ fun AboutPage(
             color = genericTextColor.value,
             text = "NextTraceroute version " +
                     BuildConfig.VERSION_NAME + ", an Android traceroute app using Nexttrace API\n" +
-                    "Copyright (C) 2024 surfaceocean\n" +
+                    "Copyright (C) 2024-2026 surfaceocean\n" +
                     "Email: r2qb8uc5@protonmail.com\n" +
                     "GitHub: https://github.com/nxtrace/NextTraceroute\n" +
                     "This program is free software: you can redistribute it and/or modify\n" +

@@ -1,7 +1,7 @@
 /*
 
 NextTraceroute, an Android traceroute app using Nexttrace API
-Copyright (C) 2024-2025 surfaceocean
+Copyright (C) 2024-2026 surfaceocean
 Email: r2qb8uc5@protonmail.com
 GitHub: https://github.com/nxtrace/NextTraceroute
 This program is free software: you can redistribute it and/or modify
