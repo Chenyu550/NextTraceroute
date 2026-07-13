@@ -1,6 +1,6 @@
 /*
 
-NextTraceroute, an Android traceroute app using Nexttrace API
+NextTraceroute, an Android traceroute app using NextTrace API
 Copyright (C) 2024-2026 surfaceocean
 Email: r2qb8uc5@protonmail.com
 GitHub: https://github.com/nxtrace/NextTraceroute
@@ -28,11 +28,11 @@ The "square/okhttp" library is licensed under the Apache 2.0 License.
 The "gson" library is licensed under the Apache 2.0 License.
 The "slf4j-android" library is licensed under the MIT License.
 The "androidx" library is licensed under the Apache 2.0 License.
-The "Compose Color Picker" library is licensed under the MIT License.
+The Miuix for Compose library is licensed under the Apache License 2.0.
 
 */
 
-package com.surfaceocean.nexttraceroute
+package com.myriastra.nexttraceroute
 
 
 import android.content.Context
@@ -166,12 +166,12 @@ class TracerouteHandler {
         if (v4Status.value && v6Status.value) {
             errorText.value = ""
         } else if (v4Status.value) {
-            errorText.value = "IPv6 native ping failed! Using linux api instead. (Unstable)"
+            errorText.value = "IPv6 原生 ping 不可用，已改用 Linux API（可能不稳定）。"
         } else if (v6Status.value) {
-            errorText.value = "IPv4 native ping failed! Using linux api instead. (Unstable)"
+            errorText.value = "IPv4 原生 ping 不可用，已改用 Linux API（可能不稳定）。"
         } else {
             errorText.value =
-                "IPv4 and IPv6 native ping failed! Using linux api instead. (Unstable)"
+                "IPv4 和 IPv6 原生 ping 均不可用，已改用 Linux API（可能不稳定）。"
         }
 
     }
@@ -1141,7 +1141,7 @@ class TracerouteHandler {
                     if (multipleIps.isEmpty()) {
 
                         insertErrorText.value =
-                            "No DNS response yet! Check hostname and DNS setting!"
+                            "DNS 解析失败，请检查主机名和 DNS 设置。"
                         isSearchBarEnabled.value = true
                     }
                     threadMutex.withLock {
@@ -1155,7 +1155,7 @@ class TracerouteHandler {
                 }
             }
         } else {
-            Toast.makeText(context, "Invalid input! Wait 2 Seconds", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, "输入无效，请稍后重试。", Toast.LENGTH_LONG).show()
         }
 
         if (inputType.value == IPV4_IDENTIFIER || inputType.value == IPV6_IDENTIFIER) {

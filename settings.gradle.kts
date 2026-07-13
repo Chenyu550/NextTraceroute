@@ -21,4 +21,3 @@ dependencyResolutionManagement {
 
 rootProject.name = "NextTraceroute"
 include(":app")
- 

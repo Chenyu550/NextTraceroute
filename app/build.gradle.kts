@@ -6,6 +6,7 @@ plugins {
 //    alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.ksp)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.aboutLibraries)
 }
 java {
     toolchain {
@@ -38,17 +39,17 @@ extensions.configure<ApplicationExtension> {
         // Disables dependency metadata when building Android App Bundles.
 //        includeInBundle = false
     }
-    namespace = "com.surfaceocean.nexttraceroute"
+    namespace = "com.myriastra.nexttraceroute"
     //noinspection GradleDependency
-    compileSdk = 36
+    compileSdk = 37
 
     defaultConfig {
-        applicationId = "com.surfaceocean.nexttraceroute"
+        applicationId = "com.myriastra.nexttraceroute"
         minSdk = 23
         //noinspection OldTargetApi
-        targetSdk = 36
-        versionCode = 16
-        versionName = "0.1.6"
+        targetSdk = 37
+        versionCode = 1
+        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -95,7 +96,6 @@ extensions.configure<ApplicationExtension> {
 }
 
 dependencies {
-    implementation(libs.compose.color.picker.android)
     implementation(libs.dnsjava)
     implementation(libs.ipaddress)
     implementation(libs.okhttp)
@@ -104,17 +104,18 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.compose.material.icons.core)
-//    implementation(libs.androidx.ui)
-//    implementation(libs.androidx.ui.graphics)
-//    implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
+    implementation(libs.androidx.navigation3.runtime)
+    implementation(libs.androidx.navigationevent.compose)
+    implementation(libs.miuix.ui)
+    implementation(libs.miuix.preference)
+    implementation(libs.miuix.icons)
+    implementation(libs.miuix.blur)
+    implementation(libs.miuix.navigation3.ui)
+    implementation(libs.aboutlibraries.core)
     implementation(libs.androidx.lifecycle.livedata.ktx)
 //    testImplementation(libs.junit)
 //    androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
 //    androidTestImplementation(libs.androidx.ui.test.junit4)
 //    debugImplementation(libs.androidx.ui.tooling)
 //    debugImplementation(libs.androidx.ui.test.manifest)
